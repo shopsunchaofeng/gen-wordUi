@@ -368,7 +368,7 @@
         </el-col>
       </el-row>
       <div class="line" style="margin-top:22px"></div>
-      <el-row :gutter="40">
+      <!-- <el-row :gutter="40">
         <el-col :span="24">
           <div class="grid-content">
             <el-form-item label="信息系统类别" prop="msgType">
@@ -378,18 +378,61 @@
             </el-form-item>
           </div>
         </el-col>
-      </el-row>
-      <el-row :gutter="40" v-show="dataForm.msgType!==''">
+      </el-row> -->
+      <el-row :gutter="40" v-if="msgTypeList.length>0">
         <el-col :span="24">
           <div class="grid-content">
-            <el-form-item :label="`${dataForm.msgType?msgTypeList[dataForm.msgType].name:''}类型`" prop="bmMsgType">
-              <el-radio-group v-model="dataForm.bmMsgType" @change="changeBmMsgType" filterable>
-                <el-radio :label="item.name" v-for="(item, index) in bmMsgTypeList[dataForm.msgType]" :key="index" border>{{item.name}}</el-radio>
+            <el-form-item :label="`${msgTypeList[0].name}`" prop="bmMsgTypeyewu" :rules='{ required: true, message: "请选择", trigger: "blur" }'>
+              <el-radio-group v-model="dataForm.bmMsgTypeyewu" @change="changeBmMsgType($event,0)" filterable>
+                <el-radio :label="item.name" v-for="(item, index) in bmMsgTypeList[0]" :key="index" border>{{item.name}}</el-radio>
               </el-radio-group>
             </el-form-item>
           </div>
         </el-col>
       </el-row>
+      <div v-if="hyt=='tongyong'">
+        <!-- tongyongNeedBase -->
+        <el-row :gutter="40" v-for="(item,index) in tongyongNeedBase[0]" :key="item.name+index">
+          <el-col :span="24">
+            <div class="grid-content">
+              <el-form-item :label="item.name">
+                <el-select placeholder="请选择" v-model="item.val1">
+                  <el-option v-for="(itemm,indexx) in item.val" :key="itemm+indexx" :label="itemm" :value="indexx">
+                  </el-option>
+                </el-select>
+              </el-form-item>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+      <el-divider></el-divider>
+      <el-row :gutter="40" v-if="msgTypeList.length>0">
+        <el-col :span="24">
+          <div class="grid-content">
+            <el-form-item :label="`${msgTypeList[1].name}`" prop="bmMsgTypexitong" :rules='{ required: true, message: "请选择", trigger: "blur" }'>
+              <el-radio-group v-model="dataForm.bmMsgTypexitong" @change="changeBmMsgType($event,1)" filterable>
+                <el-radio :label="item.name" v-for="(item, index) in bmMsgTypeList[1]" :key="index" border>{{item.name}}</el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </div>
+        </el-col>
+      </el-row>
+
+      <div v-if="hyt=='tongyong'">
+        <el-row :gutter="40" v-for="(item,index) in tongyongNeedBase[1]" :key="item.name+index">
+          <el-col :span="24">
+            <div class="grid-content">
+              <el-form-item :label="item.name">
+                <el-select placeholder="请选择" v-model="item.val1">
+                  <el-option v-for="(itemm,indexx) in item.val" :key="itemm+indexx" :label="itemm" :value="indexx">
+                  </el-option>
+                </el-select>
+              </el-form-item>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+      <el-divider></el-divider>
       <el-row :gutter="40">
         <el-col :span="24">
           <div class="grid-content">
@@ -484,7 +527,7 @@
         </el-col>
       </el-row>
       <div class="line" style="margin-top:22px"></div>
-      <div v-show="dataForm.bmMsgType1=='50c'">
+      <div v-show="dataForm.bmMsgTypeval=='50c'">
         <el-row :gutter="40">
           <el-col :span="24">
             <div class="grid-content">
@@ -824,7 +867,7 @@ export default {
       }, 100);
     };
     var isf01 = (rule, value, callback) => {
-      if (this.dataForm.bmMsgType1 == "50c") {
+      if (this.dataForm.bmMsgTypeval == "50c") {
         if (value === "") {
           callback(new Error("请选择相关选项"));
         } else {
@@ -835,7 +878,7 @@ export default {
       }
     };
     var isf02 = (rule, value, callback) => {
-      if (this.dataForm.bmMsgType1 == "50c") {
+      if (this.dataForm.bmMsgTypeval == "50c") {
         if (value === "") {
           callback(new Error("请选择相关选项"));
         } else {
@@ -846,7 +889,7 @@ export default {
       }
     };
     var isf03 = (rule, value, callback) => {
-      if (this.dataForm.bmMsgType1 == "50c") {
+      if (this.dataForm.bmMsgTypeval == "50c") {
         if (value === "") {
           callback(new Error("请选择相关选项"));
         } else {
@@ -857,7 +900,7 @@ export default {
       }
     };
     var isf04 = (rule, value, callback) => {
-      if (this.dataForm.bmMsgType1 == "50c") {
+      if (this.dataForm.bmMsgTypeval == "50c") {
         if (value === "") {
           callback(new Error("请选择相关选项"));
         } else {
@@ -868,7 +911,7 @@ export default {
       }
     };
     var isf05 = (rule, value, callback) => {
-      if (this.dataForm.bmMsgType1 == "50c") {
+      if (this.dataForm.bmMsgTypeval == "50c") {
         if (value === "") {
           callback(new Error("请选择相关选项"));
         } else {
@@ -879,7 +922,7 @@ export default {
       }
     };
     var isf06 = (rule, value, callback) => {
-      if (this.dataForm.bmMsgType1 == "50c") {
+      if (this.dataForm.bmMsgTypeval == "50c") {
         if (value === "") {
           callback(new Error("请选择相关选项"));
         } else {
@@ -890,7 +933,7 @@ export default {
       }
     };
     var isf07 = (rule, value, callback) => {
-      if (this.dataForm.bmMsgType1 == "50c") {
+      if (this.dataForm.bmMsgTypeval == "50c") {
         if (value === "") {
           callback(new Error("请选择相关选项"));
         } else {
@@ -991,6 +1034,42 @@ export default {
         "51c": ["31c", "32c", "33c", "43c", "44c", "45c"],
         "52c": ["34c", "35c", "46c", "47c"],
       },
+      // 通用假数据
+      tongyongNeedBase: [
+        [
+          {
+            name: "服务覆盖的范围",
+            val: ['全国', '省', '地级市', '县区'],
+            val1: ""
+          },
+          {
+            name: "用户人数",
+            val: ['10万级', ' 100万级', '1000万级'],
+            val1: ""
+          },
+          {
+            name: "业务量",
+            val: ['10万级', ' 百万级', '千万级'],
+            val1: ""
+          },
+        ], [
+          {
+            name: "财产损失",
+            val: ['较低', '较高', '极高'],
+            val1: ""
+          },
+          {
+            name: "恢复时间",
+            val: ['24H', ' 12H', '6H'],
+            val1: ""
+          },
+          {
+            name: "恢复成本",
+            val: ['较低', '较高', '极高'],
+            val1: ""
+          },
+        ]
+      ],
       msgTypeList: [],//一级
       bmMsgTypeList: [],//二级
       tuputuList: [],
@@ -1156,8 +1235,11 @@ export default {
           },
         ],
         msgType: "",
-        bmMsgType: "",
-        bmMsgType1: "",
+        bmMsgType: [],
+        bmMsgTypeyewu: '',
+        bmMsgTypexitong: "",
+        bmMsgType1: [],
+        bmMsgTypeval: '',
       },
       dataForm: {
         id: "",
@@ -1319,8 +1401,11 @@ export default {
           },
         ],
         msgType: "",
-        bmMsgType: "",
-        bmMsgType1: "",
+        bmMsgType: [],
+        bmMsgTypeyewu: '',
+        bmMsgTypexitong: "",
+        bmMsgType1: [],
+        bmMsgTypeval: '',
       },
       dataRule: {
         system: [
@@ -1417,9 +1502,6 @@ export default {
         msgType: [
           { required: true, message: "请选择信息系统类别", trigger: "blur" },
         ],
-        bmMsgType: [
-          { required: true, message: "请选择信息系统类别", trigger: "blur" },
-        ],
         iszjps: [
           {
             required: true,
@@ -1479,6 +1561,7 @@ export default {
       },
       s06hav: false,
       lookpic: "",
+      hyt: "",//行业type
     };
   },
   methods: {
@@ -1526,7 +1609,6 @@ export default {
         this.s06hav = false;
       }
     },
-
     init(danweiid, id, hytype) {
       console.log("init ", this.$data);
       console.log('jsonData', jsonData);
@@ -1577,6 +1659,7 @@ export default {
                 console.log("that.dataForm ", that.dataForm);
                 this.msgTypeList = jsonData[hyt].msgTypeList;
                 this.bmMsgTypeList = jsonData[hyt].bmMsgTypeList;
+                this.hyt = hyt;
                 that.$forceUpdate();
               });
             }
@@ -1588,30 +1671,37 @@ export default {
           that.dataForm.danweiid = danweiid;
           this.msgTypeList = jsonData[hyt].msgTypeList;
           this.bmMsgTypeList = jsonData[hyt].bmMsgTypeList;
+          this.hyt = hyt;
           that.$forceUpdate();
         });
       }
     },
-    changeBmMsgType(e) {
-      console.log(e)
+    changeBmMsgType(e, index) {
+      console.log(e, index)
       var that = this;
       this.$nextTick(() => {
-        for (
-          var i = 0;
-          i < that.bmMsgTypeList[that.dataForm.msgType].length;
-          i++
-        ) {
-          if (that.bmMsgTypeList[that.dataForm.msgType][i].name == e) {
-            that.dataForm.bmMsgType1 =
-              that.bmMsgTypeList[that.dataForm.msgType][i].value;
+        var maxval;
+        for (var i = 0; i < that.bmMsgTypeList[index].length; i++) {
+          if (that.bmMsgTypeList[index][i].name == e) {
+            that.dataForm.bmMsgType1[index] = that.bmMsgTypeList[index][i].value;
+            break;
           }
+        }
+        if (that.dataForm.bmMsgType1.length == 2) {
+          console.log(parseInt(that.dataForm.bmMsgType1[0]));
+          console.log(parseInt(that.dataForm.bmMsgType1[1]));
+          if (parseInt(that.dataForm.bmMsgType1[0]) - parseInt(that.dataForm.bmMsgType1[1]) >= 0) {
+            maxval = that.dataForm.bmMsgType1[0];
+          } else {
+            maxval = that.dataForm.bmMsgType1[1];
+          }
+          that.dataForm.bmMsgTypeval = maxval //最大值
         }
       });
     },
     // 表单提交
     dataFormSubmit() {
       var that = this;
-      console.log("that.dataForm", that.dataForm);
       this.$refs.tableForm.validate((valid) => {
         if (valid) {
           console.log("that.dataForm", that.dataForm);
@@ -1653,10 +1743,14 @@ export default {
               dagouparam.push(that.dataForm.fwqkdata[i].checkzrftype);
             }
           }
-          if (that.dataForm.bmMsgType1 != "") {
-            dagouparam.push(that.dataForm.bmMsgType1);
+          if (that.dataForm.bmMsgType1.length == 2) {
+            dagouparam.push(that.dataForm.bmMsgType1[0]);
             dagouparam = dagouparam.concat(
-              that.levelList[that.dataForm.bmMsgType1]
+              that.levelList[that.dataForm.bmMsgType1[0]]
+            );
+            dagouparam.push(that.dataForm.bmMsgType1[1]);
+            dagouparam = dagouparam.concat(
+              that.levelList[that.dataForm.bmMsgType1[1]]
             );
           }
           if (that.dataForm.isfxt != "") {
@@ -1699,33 +1793,49 @@ export default {
             dagouparam.push(that.dataForm.f08);
           }
           console.log(dagouparam);
-          if (that.dataForm.bmMsgType1 == "48c") {
-            formdata.dengji = "1";
+
+          if (that.dataForm.bmMsgType1[0] == "48c") {
             formdata.jb1 = "一";
-            formdata.jb2 = "一";
-            formdata.jb3 = "一";
-          } else if (that.dataForm.bmMsgType1 == "49c") {
-            formdata.dengji = "2";
+          } else if (that.dataForm.bmMsgType1[0] == "49c") {
             formdata.jb1 = "二";
-            formdata.jb2 = "二";
-            formdata.jb3 = "二";
-          } else if (that.dataForm.bmMsgType1 == "50c") {
-            formdata.dengji = "3";
+          } else if (that.dataForm.bmMsgType1[0] == "50c") {
             formdata.jb1 = "三";
-            formdata.jb2 = "三";
-            formdata.jb3 = "三";
-          } else if (that.dataForm.bmMsgType1 == "51c") {
-            formdata.dengji = "4";
+          } else if (that.dataForm.bmMsgType1[0] == "51c") {
             formdata.jb1 = "四";
-            formdata.jb2 = "四";
-            formdata.jb3 = "四";
-          } else if (that.dataForm.bmMsgType1 == "52c") {
-            formdata.dengji = "5";
+          } else if (that.dataForm.bmMsgType1[0] == "52c") {
             formdata.jb1 = "五";
+          }
+
+          if (that.dataForm.bmMsgType1[1] == "48c") {
+            formdata.jb2 = "一";
+          } else if (that.dataForm.bmMsgType1[1] == "49c") {
+            formdata.jb2 = "二";
+          } else if (that.dataForm.bmMsgType1[1] == "50c") {
+            formdata.jb2 = "三";
+          } else if (that.dataForm.bmMsgType1[1] == "51c") {
+            formdata.jb2 = "四";
+          } else if (that.dataForm.bmMsgType1[1] == "52c") {
             formdata.jb2 = "五";
+          }
+
+          if (that.dataForm.bmMsgTypeval == "48c") {
+            formdata.dengji = "1";
+            formdata.jb3 = "一";
+          } else if (that.dataForm.bmMsgTypeval == "49c") {
+            formdata.dengji = "2";
+            formdata.jb3 = "二";
+          } else if (that.dataForm.bmMsgTypeval == "50c") {
+            formdata.dengji = "3";
+            formdata.jb3 = "三";
+          } else if (that.dataForm.bmMsgTypeval == "51c") {
+            formdata.dengji = "4";
+            formdata.jb3 = "四";
+          } else if (that.dataForm.bmMsgTypeval == "52c") {
+            formdata.dengji = "5";
             formdata.jb3 = "五";
           }
-          // 48c 第 一 级 49 第 二 级 50c 第 三 级 51c 第四级 52c 第五级
+
+          // 48c第 一 级 4949c 50c第 三 级 51c第四级 52c第五级
           var tihuanparam = {},
             tihuanparam1 = {};
           tihuanparam.system = that.dataForm.system;
@@ -1776,32 +1886,48 @@ export default {
             tihuanparam[syl] = that.dataForm.gjcpsyqkdata[i].syl;
           }
 
-          if (that.dataForm.bmMsgType1 == "48c") {
-            tihuanparam1.dengji = "1";
+
+          if (that.dataForm.bmMsgType1[0] == "48c") {
             tihuanparam1.jb1 = "一";
-            tihuanparam1.jb2 = "一";
-            tihuanparam1.jb3 = "一";
-          } else if (that.dataForm.bmMsgType1 == "49c") {
-            tihuanparam1.dengji = "2";
+          } else if (that.dataForm.bmMsgType1[0] == "49c") {
             tihuanparam1.jb1 = "二";
-            tihuanparam1.jb2 = "二";
-            tihuanparam1.jb3 = "二";
-          } else if (that.dataForm.bmMsgType1 == "50c") {
-            tihuanparam1.dengji = "3";
+          } else if (that.dataForm.bmMsgType1[0] == "50c") {
             tihuanparam1.jb1 = "三";
-            tihuanparam1.jb2 = "三";
-            tihuanparam1.jb3 = "三";
-          } else if (that.dataForm.bmMsgType1 == "51c") {
-            tihuanparam1.dengji = "4";
+          } else if (that.dataForm.bmMsgType1[0] == "51c") {
             tihuanparam1.jb1 = "四";
-            tihuanparam1.jb2 = "四";
-            tihuanparam1.jb3 = "四";
-          } else if (that.dataForm.bmMsgType1 == "52c") {
-            tihuanparam1.dengji = "5";
+          } else if (that.dataForm.bmMsgType1[0] == "52c") {
             tihuanparam1.jb1 = "五";
+          }
+
+          if (that.dataForm.bmMsgType1[1] == "48c") {
+            tihuanparam1.jb2 = "一";
+          } else if (that.dataForm.bmMsgType1[1] == "49c") {
+            tihuanparam1.jb2 = "二";
+          } else if (that.dataForm.bmMsgType1[1] == "50c") {
+            tihuanparam1.jb2 = "三";
+          } else if (that.dataForm.bmMsgType1[1] == "51c") {
+            tihuanparam1.jb2 = "四";
+          } else if (that.dataForm.bmMsgType1[1] == "52c") {
             tihuanparam1.jb2 = "五";
+          }
+
+          if (that.dataForm.bmMsgTypeval == "48c") {
+            tihuanparam1.dengji = "1";
+            tihuanparam1.jb3 = "一";
+          } else if (that.dataForm.bmMsgTypeval == "49c") {
+            tihuanparam1.dengji = "2";
+            tihuanparam1.jb3 = "二";
+          } else if (that.dataForm.bmMsgTypeval == "50c") {
+            tihuanparam1.dengji = "3";
+            tihuanparam1.jb3 = "三";
+          } else if (that.dataForm.bmMsgTypeval == "51c") {
+            tihuanparam1.dengji = "4";
+            tihuanparam1.jb3 = "四";
+          } else if (that.dataForm.bmMsgTypeval == "52c") {
+            tihuanparam1.dengji = "5";
             tihuanparam1.jb3 = "五";
           }
+
           tihuanparam1.system = that.dataForm.system;
           tihuanparam1.tourudate = that.dataForm.tourudate;
           tihuanparam1.kaifadanwei = that.dataForm.kaifadanwei;
@@ -1834,6 +1960,8 @@ export default {
                 that.$emit("updateSystemList", this.dataForm.danweiid);
               }
             });
+        } else {
+          this.$message.error('请完善相关信息');
         }
       });
     },

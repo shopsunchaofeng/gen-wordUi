@@ -26,8 +26,9 @@
     <!-- 弹窗, 新增 / 修改 -->
     <add-or-update v-if="addOrUpdateVisible" ref="addOrUpdate" @refreshDataList="getDataList"></add-or-update>
     <add-update v-if="addUpdateVisible" ref="addUpdate" @refreshDataList="getDataList"></add-update>
-    <systemList v-if="systemListVisible" ref="systemList" @openSystempath1="openSystempath1(arguments)" @openYLWord="openYLWord"></systemList>
+    <systemList v-if="systemListVisible" ref="systemList" @openSystempath12="openSystempath12(arguments)" @openSystempath1="openSystempath1(arguments)" @openYLWord="openYLWord"></systemList>
     <systempath1 v-if="systempath1Visible" ref="systempath1" @updateSystemList="updateSystemList"></systempath1>
+    <systempath12 v-if="systempath12Visible" ref="systempath12" @updateSystemList="updateSystemList"></systempath12>
     <!--定级word预览-->
     <el-dialog :visible.sync="dialogVisible">
       <!--<iframe :src="'https://view.officeapps.live.com/op/view.aspx?src='+'http://www.henanzhengwang.com/gen-word-api'+'/api/content/yulan?id='+id+'&type=1'" width='100%' height="700px"></iframe>-->
@@ -45,6 +46,7 @@ import AddOrUpdate from "./content-add-or-update";
 import AddUpdate from "./content-addUpdate";
 import systemList from "./systemList";
 import systempath1 from "./systempath1";
+import systempath12 from "./systempath12";
 
 export default {
   data() {
@@ -64,6 +66,7 @@ export default {
       addUpdateVisible: false,
       systemListVisible: false,
       systempath1Visible: false,
+      systempath12Visible: false,
     };
   },
   components: {
@@ -71,6 +74,7 @@ export default {
     AddUpdate,
     systemList,
     systempath1,
+    systempath12,
   },
   activated() {
     this.getDataList();
@@ -92,6 +96,13 @@ export default {
       this.systempath1Visible = true;
       this.$nextTick(() => {
         this.$refs.systempath1.init(id[0], id[1], id[2]);
+      });
+    },
+    openSystempath12(id) {
+      console.log("add", id);
+      this.systempath12Visible = true;
+      this.$nextTick(() => {
+        this.$refs.systempath12.init(id[0], id[1], id[2]);
       });
     },
     bianji(id, num, hytype) {

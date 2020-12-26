@@ -74,10 +74,16 @@ export default {
       // this.$http.BASE_URL + `/gen/system/export?id=${id}&type=${type}`;
     },
     addSystem(ind) {
-      // console.log(e);
-      this.$nextTick(() => {
-        this.$emit("openSystempath1", this.dataForm.id, '', this.hytype);
-      });
+      console.log(this.hytype);
+      if (this.hytype == '37d' || this.hytype == '30d' || this.hytype == '44d' || this.hytype == '33d') {
+        this.$nextTick(() => {
+          this.$emit("openSystempath12", this.dataForm.id, '', this.hytype);
+        });
+      } else {
+        this.$nextTick(() => {
+          this.$emit("openSystempath1", this.dataForm.id, '', this.hytype);
+        });
+      }
     },
     // 每页数
     sizeChangeHandle(val) {
@@ -103,9 +109,15 @@ export default {
     },
     changeSystem(id) {
       console.log("iiiiiii1d", id);
+      if (this.hytype == '37d' || this.hytype == '30d' || this.hytype == '44d' || this.hytype == '33d') {
+      this.$nextTick(() => {
+        this.$emit("openSystempath12", this.dataForm.id, id, this.hytype);
+      });
+      } else {
       this.$nextTick(() => {
         this.$emit("openSystempath1", this.dataForm.id, id, this.hytype);
       });
+      }
     },
     init(id, num, hytype) {
       console.log("nu", num);

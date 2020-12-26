@@ -531,6 +531,8 @@ export default {
                 that.$emit("refreshDataList");
               }
             });
+        }else{
+           this.$message.error('请完善相关信息');
         }
       });
     },
