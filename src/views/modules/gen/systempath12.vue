@@ -1028,11 +1028,18 @@ export default {
       imgdialogVisible: false,
       // 48c第 一 级 49c 第 二 级 50c 第 三 级 51c第四级 52c第五级
       levelList: {
-        "48c": ["23c", "24c", "36c", "37c"],
-        "49c": ["25c", "27c", "26c", "38c", "89c", "39c"],
-        "50c": ["28c", "29c", "30c", "40c", "41c", "42c"],
-        "51c": ["31c", "32c", "33c", "43c", "44c", "45c"],
-        "52c": ["34c", "35c", "46c", "47c"],
+        "48c": ["23c", "24c"],
+        "49c": ["25c", "27c", "26c"],
+        "50c": ["28c", "29c", "30c"],
+        "51c": ["31c", "32c", "33c"],
+        "52c": ["34c", "35c"],
+      },
+      levelList1: {
+        "48c": ["36c", "37c"],
+        "49c": ["38c", "89c", "39c"],
+        "50c": ["40c", "41c", "42c"],
+        "51c": ["43c", "44c", "45c"],
+        "52c": ["46c", "47c"],
       },
       // 通用假数据
       tongyongNeedBase: [
@@ -1744,13 +1751,12 @@ export default {
             }
           }
           if (that.dataForm.bmMsgType1.length == 2) {
-            dagouparam.push(that.dataForm.bmMsgType1[0]);
+            dagouparam.push(that.dataForm.bmMsgTypeval);
             dagouparam = dagouparam.concat(
               that.levelList[that.dataForm.bmMsgType1[0]]
             );
-            dagouparam.push(that.dataForm.bmMsgType1[1]);
             dagouparam = dagouparam.concat(
-              that.levelList[that.dataForm.bmMsgType1[1]]
+              that.levelList1[that.dataForm.bmMsgType1[1]]
             );
           }
           if (that.dataForm.isfxt != "") {

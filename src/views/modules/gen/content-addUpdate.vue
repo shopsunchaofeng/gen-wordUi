@@ -20,22 +20,6 @@
       <el-row :gutter="40">
         <el-col :span="12">
           <div class="grid-content">
-            <el-form-item label="单位负责人" prop="fuze">
-              <el-input v-model="dataForm.fuze" placeholder="请填写单位负责人"></el-input>
-            </el-form-item>
-          </div>
-        </el-col>
-        <el-col :span="12">
-          <div class="grid-content">
-            <el-form-item label="职务/职称" prop="zhicheng">
-              <el-input v-model="dataForm.zhicheng" placeholder="职务/职称"></el-input>
-            </el-form-item>
-          </div>
-        </el-col>
-      </el-row>
-      <el-row :gutter="40">
-        <el-col :span="12">
-          <div class="grid-content">
             <el-form-item label="单位互联网IP地址段" prop="ipdizhi">
               <el-input v-model="dataForm.ipdizhi" placeholder="请填写单位互联网IP地址段（多个用逗号隔开）"></el-input>
             </el-form-item>
@@ -66,6 +50,22 @@
       <el-row :gutter="40">
         <el-col :span="12">
           <div class="grid-content">
+            <el-form-item label="单位负责人" prop="fuze">
+              <el-input v-model="dataForm.fuze" placeholder="请填写单位负责人"></el-input>
+            </el-form-item>
+          </div>
+        </el-col>
+        <el-col :span="12">
+          <div class="grid-content">
+            <el-form-item label="职务/职称" prop="zhicheng">
+              <el-input v-model="dataForm.zhicheng" placeholder="职务/职称"></el-input>
+            </el-form-item>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row :gutter="40">
+        <el-col :span="12">
+          <div class="grid-content">
             <el-form-item label="请填写办公电话" prop="bangongphone">
               <el-input v-model="dataForm.bangongphone" placeholder="请填写办公电话"></el-input>
             </el-form-item>
@@ -84,13 +84,6 @@
           <div class="grid-content">
             <el-form-item label="责任部门" prop="zerenbumen">
               <el-input v-model="dataForm.zerenbumen" placeholder="请填写责任部门"></el-input>
-            </el-form-item>
-          </div>
-        </el-col>
-        <el-col :span="12">
-          <div class="grid-content">
-            <el-form-item label="职务/职称" prop="zhiwuname">
-              <el-input v-model="dataForm.zhiwuname" placeholder="职务/职称"></el-input>
             </el-form-item>
           </div>
         </el-col>
@@ -131,6 +124,15 @@
           <div class="grid-content">
             <el-form-item label="电子邮件" prop="fuzemail">
               <el-input v-model="dataForm.fuzemail" placeholder="电子邮件"></el-input>
+            </el-form-item>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row :gutter="40">
+        <el-col :span="12">
+          <div class="grid-content">
+            <el-form-item label="职务/职称" prop="zhiwuname">
+              <el-input v-model="dataForm.zhiwuname" placeholder="职务/职称"></el-input>
             </el-form-item>
           </div>
         </el-col>
@@ -186,7 +188,7 @@
         <el-col :span="24">
           <el-form-item label="行业类别" prop="hylb" class="hylb">
             <el-radio-group v-model="dataForm.hylb">
-              <el-radio disabled label="11d">电信</el-radio>
+              <!-- <el-radio disabled label="11d">电信</el-radio>
               <el-radio label="12d">广电</el-radio>
               <el-radio disabled label="13d">经营性公众互联网</el-radio>
               <el-radio disabled label="14d">铁路</el-radio>
@@ -219,6 +221,40 @@
               <el-radio disabled label="41d">科技</el-radio>
               <el-radio disabled label="42d">宣传</el-radio>
               <el-radio disabled label="43d">质量监督检验检疫</el-radio>
+              <el-radio label="44d">其他</el-radio> -->
+              <el-radio label="11d">电信</el-radio>
+              <el-radio label="12d">广电</el-radio>
+              <el-radio label="13d">经营性公众互联网</el-radio>
+              <el-radio label="14d">铁路</el-radio>
+              <el-radio label="15d">银行</el-radio>
+              <el-radio label="16d">海关</el-radio>
+              <el-radio label="17d">税务</el-radio>
+              <el-radio label="18d">民航</el-radio>
+              <el-radio label="19d">电力</el-radio>
+              <el-radio label="20d">证券</el-radio>
+              <el-radio label="21d">保险</el-radio>
+              <el-radio label="22d">国防科技工业</el-radio>
+              <el-radio label="23d">公安</el-radio>
+              <el-radio label="24d">人事劳动和社会保障</el-radio>
+              <el-radio label="25d">财政</el-radio>
+              <el-radio label="26d">审计</el-radio>
+              <el-radio label="27d">商业贸易</el-radio>
+              <el-radio label="28d">国土资源</el-radio>
+              <el-radio label="29d">能源</el-radio>
+              <el-radio label="30d">交通</el-radio>
+              <el-radio label="31d">统计</el-radio>
+              <el-radio label="32d">工商行政管理</el-radio>
+              <el-radio label="33d">邮政</el-radio>
+              <el-radio label="34d">教育</el-radio>
+              <el-radio label="35d">文化</el-radio>
+              <el-radio label="36d">卫生</el-radio>
+              <el-radio label="37d">林业</el-radio>
+              <el-radio label="38d">水利</el-radio>
+              <el-radio label="39d">外交</el-radio>
+              <el-radio label="40d">发展改革</el-radio>
+              <el-radio label="41d">科技</el-radio>
+              <el-radio label="42d">宣传</el-radio>
+              <el-radio label="43d">质量监督检验检疫</el-radio>
               <el-radio label="44d">其他</el-radio>
             </el-radio-group>
           </el-form-item>
@@ -503,6 +539,17 @@ export default {
           formdata.basedagouparam = [];
           formdata.basedagouparam.push(that.dataForm.lsgx);
           formdata.basedagouparam.push(that.dataForm.dwlx);
+          if (that.dataForm.hylb != '12d' ||
+            that.dataForm.hylb != '15d' ||
+            that.dataForm.hylb != '18d' ||
+            that.dataForm.hylb != '19d' ||
+            that.dataForm.hylb != '30d' ||
+            that.dataForm.hylb != '33d' ||
+            that.dataForm.hylb != '34d' ||
+            that.dataForm.hylb != '37d'
+          ) {
+            that.dataForm.hylb = '44d'
+          }
           formdata.basedagouparam.push(that.dataForm.hylb);
           formdata.qita1 = that.dataForm.qita1;
           formdata.qita2 = that.dataForm.qita2;
@@ -531,8 +578,8 @@ export default {
                 that.$emit("refreshDataList");
               }
             });
-        }else{
-           this.$message.error('请完善相关信息');
+        } else {
+          this.$message.error('请完善相关信息');
         }
       });
     },
